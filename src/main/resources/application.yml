@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: AutopayPlugin
+
+autopay:
+  base-url: http://localhost:8080
+  connection-timeout: 10000
+  read-timeout: 10000
+  token:
+  username: test
+  password: test
+  simulate: true
+server:
+  port: 8080
