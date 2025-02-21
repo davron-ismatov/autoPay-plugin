@@ -4,7 +4,8 @@ import com.example.autopayplugin.service.RequestSenderService;
 import com.example.autopayplugin.service.TransactionService;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.transaction.*;
+import com.example.autopayplugin.service.dto.request.transaction.*;
+import com.example.autopayplugin.service.dto.response.transaction.*;
 import com.example.autopayplugin.utils.DTOFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +29,8 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public AutopayBaseResponse<TransactionSynchResponseDTO> synch(TransactionSynchRequestDTO dto) {
-        log.info("transaction synch: {}", dto.toString());
+    public AutopayBaseResponse<TransactionSynchResponseDTO> sync(TransactionSynchRequestDTO dto) {
+        log.info("transaction sync: {}", dto.toString());
 
         AutopayBaseRequest<TransactionSynchRequestDTO> request = DTOFactory.createAutopayBaseRequestDTO(TRANSACTION_SYNCHRONIZE, dto);
 

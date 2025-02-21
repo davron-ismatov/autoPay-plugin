@@ -5,7 +5,8 @@ import com.example.autopayplugin.service.ContractService;
 import com.example.autopayplugin.service.RequestSenderService;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.contract.*;
+import com.example.autopayplugin.service.dto.request.contract.*;
+import com.example.autopayplugin.service.dto.response.contract.*;
 import com.example.autopayplugin.utils.DTOFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +19,10 @@ public class ContractServiceImpl implements ContractService {
     private final RequestSenderService requestSenderService;
 
     @Override
-    public AutopayBaseResponse<ContractCreateWithClientResponseDTO> createWithClient(ContractCreateWithClientDTO dto) {
+    public AutopayBaseResponse<ContractCreateWithClientResponseDTO> createWithClient(ContractCreateWithClientRequestRequestDTO dto) {
         log.info("createWithClient: {}", dto);
 
-        AutopayBaseRequest<ContractCreateWithClientDTO> request = DTOFactory.createAutopayBaseRequestDTO(Constants.CONTRACT_CREATE_WITH_CLIENT, dto);
+        AutopayBaseRequest<ContractCreateWithClientRequestRequestDTO> request = DTOFactory.createAutopayBaseRequestDTO(Constants.CONTRACT_CREATE_WITH_CLIENT, dto);
 
         return requestSenderService.sendRequest(request, ContractCreateWithClientResponseDTO.class);
     }

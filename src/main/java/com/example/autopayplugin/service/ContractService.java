@@ -1,10 +1,11 @@
 package com.example.autopayplugin.service;
 
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.contract.*;
+import com.example.autopayplugin.service.dto.request.contract.*;
+import com.example.autopayplugin.service.dto.response.contract.*;
 
 public interface ContractService {
-    AutopayBaseResponse<ContractCreateWithClientResponseDTO> createWithClient(ContractCreateWithClientDTO dto);
+    AutopayBaseResponse<ContractCreateWithClientResponseDTO> createWithClient(ContractCreateWithClientRequestRequestDTO dto);
 
     AutopayBaseResponse<ContractUpdateResponseDTO> update(ContractUpdateRequestDTO dto);
 

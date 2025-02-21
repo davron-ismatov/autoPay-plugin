@@ -4,11 +4,11 @@ import com.example.autopayplugin.config.AutopayProperties;
 import com.example.autopayplugin.service.AuthorizationService;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.authorization.AuthorizationRequestDTO;
-import com.example.autopayplugin.service.dto.authorization.AuthorizationResponseDTO;
+import com.example.autopayplugin.service.dto.request.authorization.AuthorizationRequestDTO;
+import com.example.autopayplugin.service.dto.response.authorization.AuthorizationResponseDTO;
 import com.example.autopayplugin.utils.DTOFactory;
 import com.example.autopayplugin.utils.ExceptionValidator;
-import com.example.autopayplugin.utils.ResponseUtils;
+import com.example.autopayplugin.utils.AutopayResponseUtils;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,18 +47,17 @@ public class AuthorizationServiceImpl implements AuthorizationService {
                     HttpMethod.POST, entity, new ParameterizedTypeReference<>() {
                     });
 
-            var validatedResponse = ResponseUtils.validateResponse(response);
+            var validatedResponse = AutopayResponseUtils.validateResponse(response);
 
-            if (validatedResponse != null)
+            if (!validatedResponse.getStatus())
                 return validatedResponse.getResult();
 
-            if (response.getStatusCode().is2xxSuccessful()) {
-                token.set(
-                        AuthorizationResponseDTO.builder()
-                                .token(response.getBody().getResult().getToken())
-                                .build()
-                );
-            }
+            token.set(
+                    AuthorizationResponseDTO.builder()
+                            .token(response.getBody().getResult().getToken())
+                            .build()
+            );
+
 
             log.info("Login response: {}", response.getBody());
             return response.getBody();

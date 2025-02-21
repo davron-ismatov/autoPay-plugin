@@ -1,12 +1,13 @@
 package com.example.autopayplugin.service;
 
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.transaction.*;
+import com.example.autopayplugin.service.dto.request.transaction.*;
+import com.example.autopayplugin.service.dto.response.transaction.*;
 
 public interface TransactionService {
     AutopayBaseResponse<TransactionGetResponseDTO> get(TransactionGetRequestDTO dto);
 
-    AutopayBaseResponse<TransactionSynchResponseDTO> synch(TransactionSynchRequestDTO dto);
+    AutopayBaseResponse<TransactionSynchResponseDTO> sync(TransactionSynchRequestDTO dto);
 
     AutopayBaseResponse<TransactionDTO> findByExt(TransactionFindAndCancelRequestDTO dto);
 

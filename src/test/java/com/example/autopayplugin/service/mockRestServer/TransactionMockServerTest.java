@@ -4,7 +4,8 @@ import com.example.autopayplugin.constants.Constants;
 import com.example.autopayplugin.service.TransactionService;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.transaction.*;
+import com.example.autopayplugin.service.dto.request.transaction.*;
+import com.example.autopayplugin.service.dto.response.transaction.*;
 import com.example.autopayplugin.utils.DynamicDtoGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -65,7 +66,7 @@ public class TransactionMockServerTest {
     }
 
     @Test
-    void test_synch_transaction_on_success() throws JsonProcessingException {
+    void test_sync_transaction_on_success() throws JsonProcessingException {
         TransactionSynchRequestDTO dto = DynamicDtoGenerator.generateDefaultObject(TransactionSynchRequestDTO.class);
         var baseRequest = AutopayBaseRequest.<TransactionSynchRequestDTO>builder().method(Constants.TRANSACTION_SYNCHRONIZE).params(dto).build();
         TransactionSynchResponseDTO responseDTO = DynamicDtoGenerator.generateDefaultObject(TransactionSynchResponseDTO.class);
@@ -77,7 +78,7 @@ public class TransactionMockServerTest {
                 .andExpect(content().json(objectMapper.writeValueAsString(baseRequest)))
                 .andRespond(withSuccess(objectMapper.writeValueAsString(baseResponse), MediaType.APPLICATION_JSON));
 
-        AutopayBaseResponse<TransactionSynchResponseDTO> response = service.synch(dto);
+        AutopayBaseResponse<TransactionSynchResponseDTO> response = service.sync(dto);
 
         assertNotNull(response);
         assertNotNull(response.getResult());

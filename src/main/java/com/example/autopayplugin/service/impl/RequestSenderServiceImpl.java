@@ -2,14 +2,14 @@ package com.example.autopayplugin.service.impl;
 
 import com.example.autopayplugin.config.AutopayProperties;
 import com.example.autopayplugin.constants.Constants;
-import com.example.autopayplugin.domain.enumeration.Errors;
+import com.example.autopayplugin.domain.enumeration.AutopayErrors;
 import com.example.autopayplugin.service.AuthorizationService;
 import com.example.autopayplugin.service.RequestSenderService;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
 import com.example.autopayplugin.utils.DTOFactory;
 import com.example.autopayplugin.utils.ExceptionValidator;
-import com.example.autopayplugin.utils.ResponseUtils;
+import com.example.autopayplugin.utils.AutopayResponseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,8 +42,8 @@ public class RequestSenderServiceImpl implements RequestSenderService {
                     new HttpEntity<>(request), new ParameterizedTypeReference<>() {
                     });
 
-            var validatedResponse = ResponseUtils.validateResponse(response);
-            if (validatedResponse != null)
+            var validatedResponse = AutopayResponseUtils.validateResponse(response);
+            if (!validatedResponse.getStatus())
                 return validatedResponse.getResult();
 
             log.info("response: {}", response.getBody());
@@ -51,7 +51,7 @@ public class RequestSenderServiceImpl implements RequestSenderService {
             return response.getBody();
         } catch (HttpClientErrorException.Unauthorized exception) {
             authorizationService.login();
-            return DTOFactory.createAutopayBaseResponseForUnknownError(exception.getMessage(), Errors.UNAUTHORIZED);
+            return DTOFactory.createAutopayBaseResponseForUnknownError(exception.getMessage(), AutopayErrors.UNAUTHORIZED);
         } catch (Exception e) {
             log.warn("Exception occurred: {}", e.getMessage());
             return ExceptionValidator.validateException(e);

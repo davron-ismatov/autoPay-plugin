@@ -1,7 +1,7 @@
 package com.example.autopayplugin.utils;
 
-import com.example.autopayplugin.domain.enumeration.Errors;
-import com.example.autopayplugin.service.dto.authorization.AuthorizationRequestDTO;
+import com.example.autopayplugin.domain.enumeration.AutopayErrors;
+import com.example.autopayplugin.service.dto.request.authorization.AuthorizationRequestDTO;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
 import com.example.autopayplugin.service.dto.ErrorResponseDTO;
@@ -20,12 +20,24 @@ public class DTOFactory {
     }
 
 
-    public static <T> AutopayBaseResponse<T> createAutopayBaseResponseForUnknownError(String errorMessage, Errors status) {
+    public static <T> AutopayBaseResponse<T> createAutopayBaseResponseForUnknownError(String errorMessage, AutopayErrors status) {
         return AutopayBaseResponse.<T>builder()
                 .status(false)
                 .error(
                         ErrorResponseDTO.builder()
                                 .message(errorMessage)
+                                .status(status)
+                                .build()
+                )
+                .build();
+    }
+
+    public static <T> AutopayBaseResponse<T> createAutopayBaseResponseForUnknownError(Boolean isSuccessful, AutopayErrors status) {
+        return AutopayBaseResponse.<T>builder()
+                .status(isSuccessful)
+                .error(
+                        ErrorResponseDTO.builder()
+                                .message(status.getMessage().uz())
                                 .status(status)
                                 .build()
                 )

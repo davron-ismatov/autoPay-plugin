@@ -4,7 +4,8 @@ import com.example.autopayplugin.constants.Constants;
 import com.example.autopayplugin.service.ContractService;
 import com.example.autopayplugin.service.dto.AutopayBaseRequest;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.contract.*;
+import com.example.autopayplugin.service.dto.request.contract.*;
+import com.example.autopayplugin.service.dto.response.contract.*;
 import com.example.autopayplugin.utils.DynamicDtoGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,8 +47,8 @@ public class ContractMockServerTest {
 
     @Test
     public void create_with_client_on_success() throws JsonProcessingException {
-        ContractCreateWithClientDTO dto = DynamicDtoGenerator.generateDefaultObject(ContractCreateWithClientDTO.class);
-        var baseRequest = AutopayBaseRequest.<ContractCreateWithClientDTO>builder().method(Constants.CONTRACT_CREATE_WITH_CLIENT).params(dto).build();
+        ContractCreateWithClientRequestRequestDTO dto = DynamicDtoGenerator.generateDefaultObject(ContractCreateWithClientRequestRequestDTO.class);
+        var baseRequest = AutopayBaseRequest.<ContractCreateWithClientRequestRequestDTO>builder().method(Constants.CONTRACT_CREATE_WITH_CLIENT).params(dto).build();
         ContractCreateWithClientResponseDTO responseDTO = DynamicDtoGenerator.generateDefaultObject(ContractCreateWithClientResponseDTO.class);
         var baseResponse = AutopayBaseResponse.<ContractCreateWithClientResponseDTO>builder().result(responseDTO).build();
 

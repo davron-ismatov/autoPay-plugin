@@ -3,7 +3,7 @@ package com.example.autopayplugin.service.mockRestServer;
 
 import com.example.autopayplugin.service.AuthorizationService;
 import com.example.autopayplugin.service.dto.AutopayBaseResponse;
-import com.example.autopayplugin.service.dto.authorization.AuthorizationResponseDTO;
+import com.example.autopayplugin.service.dto.response.authorization.AuthorizationResponseDTO;
 import com.example.autopayplugin.utils.DynamicDtoGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;

@@ -1,7 +1,6 @@
 package com.example.autopayplugin.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -34,7 +33,7 @@ public class AutopayClientConfig {
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
                 .messageConverters(createMessageConverters())
-                .interceptors(List.of(new AutopatRestTemplateInterceptor()))
+                .interceptors(List.of(new AutopayRestTemplateInterceptor()))
                 .requestFactory(this::clientHttpRequestFactory)
                 .build();
     }

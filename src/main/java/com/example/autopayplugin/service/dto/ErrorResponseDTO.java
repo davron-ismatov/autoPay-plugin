@@ -1,6 +1,6 @@
 package com.example.autopayplugin.service.dto;
 
-import com.example.autopayplugin.domain.enumeration.Errors;
+import com.example.autopayplugin.domain.enumeration.AutopayErrors;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,5 +12,5 @@ import lombok.ToString;
 @ToString
 public class ErrorResponseDTO {
     private String message;
-    private Errors status;
+    private AutopayErrors status;
 }
