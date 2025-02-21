@@ -1,6 +1,7 @@
 package com.example.autopayplugin.service.dto.request.contract;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,5 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContractFindRequestDTO {
+    @Schema(description = "Contract`s loan_id attribute")
     private String loanId;
 }

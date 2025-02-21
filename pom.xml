@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>AutopayPlugin</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <name>AutopayPlugin</name>
     <description>AutopayPlugin</description>
     <url/>
@@ -34,7 +34,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.25</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

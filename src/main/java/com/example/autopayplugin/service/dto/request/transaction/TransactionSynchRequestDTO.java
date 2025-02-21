@@ -1,5 +1,6 @@
 package com.example.autopayplugin.service.dto.request.transaction;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionSynchRequestDTO {
+    @Schema(description = "Synchronized status of transactions list. true or false")
     private Boolean isSynced;
+
+    @Schema(description = "Array of transaction ext values")
     private List<String> transactions;
 }
